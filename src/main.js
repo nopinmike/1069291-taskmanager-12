@@ -10,8 +10,8 @@ const CONTROLS_DATA = [
   {
     name: `statistic`,
     text: `STATISTICS`,
-  },
-]
+  }
+];
 
 const TASKS_DATA = [
   {
@@ -23,7 +23,7 @@ const TASKS_DATA = [
     repeat: false,
     deadline: false,
     favorites: false,
-    archive: true,
+    archive: true
   },
   {
     color: `blue`,
@@ -34,7 +34,7 @@ const TASKS_DATA = [
     repeat: true,
     deadline: true,
     favorites: true,
-    archive: false,
+    archive: false
   },
   {
     color: `pink`,
@@ -45,76 +45,76 @@ const TASKS_DATA = [
     repeat: true,
     deadline: false,
     favorites: false,
-    archive: true,
-  },
-]
+    archive: true
+  }
+];
 
 const FILTER_DATA = [
   {
     name: `All`,
-    count: TASKS_DATA.length,
+    count: TASKS_DATA.length
   },
   {
     name: `Overdue`,
     count: TASKS_DATA.reduce((sum, task) => {
       let count = task.overdue ? 1 : 0
       return sum + count
-    }, 0),
+    }, 0)
   },
   {
     name: `Today`,
     count: TASKS_DATA.reduce((sum, task) => {
       let count = task.today ? 1 : 0
       return sum + count
-    }, 0),
+    }, 0)
   },
   {
     name: `Favorites`,
     count: TASKS_DATA.reduce((sum, task) => {
       let count = task.favorites ? 1 : 0
       return sum + count
-    }, 0),
+    }, 0)
   },
   {
     name: `Repeating`,
     count: TASKS_DATA.reduce((sum, task) => {
       let count = task.repeat ? 1 : 0
       return sum + count
-    }, 0),
+    }, 0)
   },
   {
     name: `Archive`,
     count: TASKS_DATA.reduce((sum, task) => {
       let count = task.archive ? 1 : 0
       return sum + count
-    }, 0),
-  },
-]
+    }, 0)
+  }
+];
 
 const SORT_DATA = [
   {
     text: `SORT BY DEFAULT`,
-    link: `#`,
+    link: `#`
   },
   {
     text: `SORT BY DATE up`,
-    link: `#`,
+    link: `#`
   },
   {
     text: `SORT BY DATE down`,
-    link: `#`,
-  },
-]
+    link: `#`
+  }
+];
 
 const createSiteMenuContainer = () => {
   return (
     `<section class="control__btn-wrap"></section>`
-  )
-}
+  );
+};
 
 const createSiteMenuElement = (control) => {
-  const attrChecked = control.name === `task` ? `checked` : ``
-  const classNewTask = control.name === `new-task` ? `control__label--new-task` : ``
+  const attrChecked = control.name === `task` ? `checked` : ``;
+  const classNewTask = control.name === `new-task` ? `control__label--new-task` : ``;
 
   return (
     `<input
@@ -127,18 +127,18 @@ const createSiteMenuElement = (control) => {
       <label for="control__${control.name}" class="control__label ${classNewTask}"
         >${control.text}</label
       >`
-  )
-}
+  );
+};
 
 const createSiteFiltersContainer = () => {
   return (
     `<section class="main__filter filter container"></section>`
-  )
-}
+  );
+};
 
 const createSiteFilterElement = (name, count) => {
-  let attr = name === `All` ? `checked` : ``
-  attr = count ? attr : `disabled`
+  let attr = name === `All` ? `checked` : ``;
+  attr = count ? attr : `disabled`;
 
   return (
     `<input
@@ -151,36 +151,36 @@ const createSiteFilterElement = (name, count) => {
     <label for="filter__${name.toLowerCase()}" class="filter__label">
       ${name} <span class="filter__${name.toLowerCase()}-count">${count}</span></label
     >`
-  )
-}
+  );
+};
 
 const createSiteBoard = () => {
   return (
     `<section class="board container"></section>`
-  )
-}
+  );
+};
 
 const createSiteSortingContainer = () => {
   return (
     `<div class="board__filter-list"></div>`
-  )
-}
+  );
+};
 
 const createSiteSortingElement = (text, link) => {
   return (
     `<a href="${link}" class="board__filter">${text}</a>`
-  )
-}
+  );
+};
 
 const createSiteTasksContainer = () => {
   return (
     `<div class="board__tasks"></div>`
-  )
-}
+  );
+};
 
 const createSiteTask = (task) => {
-  const classRepeat = task.repeat ? `card--repeat` : ``
-  const classDeadline = task.deadline ? `card--deadline` : ``
+  const classRepeat = task.repeat ? `card--repeat` : ``;
+  const classDeadline = task.deadline ? `card--deadline` : ``;
 
   const createCardDates = () => {
     const template = task.date ?
@@ -191,10 +191,10 @@ const createSiteTask = (task) => {
           </p>
         </div>
       </div>`
-    : ``
+    : ``;
 
-    return template
-  }
+    return template;
+  };
 
   return (
     `<article class="card card--${task.color} ${classRepeat} ${classDeadline}">
@@ -233,8 +233,8 @@ const createSiteTask = (task) => {
         </div>
       </div>
     </article>`
-  )
-}
+  );
+};
 
 const createSiteNewTaskElement = () => {
   return (
@@ -434,58 +434,58 @@ const createSiteNewTaskElement = () => {
         </div>
       </form>
     </article>`
-  )
-}
+  );
+};
 
 const createSiteButtonLoadMore = () => {
   return (
     `<button class="load-more" type="button">load more</button>`
-  )
-}
+  );
+};
 
 const render = (container, template, place) => {
-  container.insertAdjacentHTML(place, template)
-}
+  container.insertAdjacentHTML(place, template);
+};
 
-const siteMain = document.querySelector(`.main`)
-const siteMainControl = siteMain.querySelector(`.main__control`)
+const siteMain = document.querySelector(`.main`);
+const siteMainControl = siteMain.querySelector(`.main__control`);
 
-render(siteMainControl, createSiteMenuContainer(), `beforeend`)
+render(siteMainControl, createSiteMenuContainer(), `beforeend`);
 
-const siteMainControlContainer = siteMainControl.querySelector(`.control__btn-wrap`)
+const siteMainControlContainer = siteMainControl.querySelector(`.control__btn-wrap`);
 
 CONTROLS_DATA.forEach(control => {
-  render(siteMainControlContainer, createSiteMenuElement(control), `beforeend`)
-})
+  render(siteMainControlContainer, createSiteMenuElement(control), `beforeend`);
+});
 
-render(siteMain, createSiteFiltersContainer(), `beforeend`)
+render(siteMain, createSiteFiltersContainer(), `beforeend`);
 
-const siteFiltersContainer = siteMain.querySelector(`.main__filter`)
+const siteFiltersContainer = siteMain.querySelector(`.main__filter`);
 
 FILTER_DATA.forEach(filterData => {
-  render(siteFiltersContainer, createSiteFilterElement(filterData.name, filterData.count), `beforeend`)
-})
+  render(siteFiltersContainer, createSiteFilterElement(filterData.name, filterData.count), `beforeend`);
+});
 
-render(siteMain, createSiteBoard(), `beforeend`)
+render(siteMain, createSiteBoard(), `beforeend`);
 
-const siteBoard = siteMain.querySelector(`.board`)
+const siteBoard = siteMain.querySelector(`.board`);
 
-render(siteBoard, createSiteSortingContainer(), `beforeend`)
+render(siteBoard, createSiteSortingContainer(), `beforeend`);
 
-const siteSortingContainer = siteBoard.querySelector(`.board__filter-list`)
+const siteSortingContainer = siteBoard.querySelector(`.board__filter-list`);
 
 SORT_DATA.forEach(sortingData => {
-  render(siteSortingContainer, createSiteSortingElement(sortingData.text, sortingData.link), `beforeend`)
-})
+  render(siteSortingContainer, createSiteSortingElement(sortingData.text, sortingData.link), `beforeend`);
+});
 
-render(siteBoard, createSiteTasksContainer(), `beforeend`)
+render(siteBoard, createSiteTasksContainer(), `beforeend`);
 
-const siteTasksContainer = siteBoard.querySelector(`.board__tasks`)
+const siteTasksContainer = siteBoard.querySelector(`.board__tasks`);
 
 TASKS_DATA.forEach(task => {
-  render(siteTasksContainer, createSiteTask(task), `beforeend`)
-})
+  render(siteTasksContainer, createSiteTask(task), `beforeend`);
+});
 
-render(siteTasksContainer, createSiteNewTaskElement(), `afterbegin`)
-render(siteBoard, createSiteButtonLoadMore(), `beforeend`)
+render(siteTasksContainer, createSiteNewTaskElement(), `afterbegin`);
+render(siteBoard, createSiteButtonLoadMore(), `beforeend`);
 
