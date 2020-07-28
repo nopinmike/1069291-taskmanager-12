@@ -1,3 +1,5 @@
+"use strict";
+
 const CONTROLS_DATA = [
   {
     name: `new-task`,
@@ -57,36 +59,36 @@ const FILTER_DATA = [
   {
     name: `Overdue`,
     count: TASKS_DATA.reduce((sum, task) => {
-      let count = task.overdue ? 1 : 0
-      return sum + count
+      let count = task.overdue ? 1 : 0;
+      return sum + count;
     }, 0)
   },
   {
     name: `Today`,
     count: TASKS_DATA.reduce((sum, task) => {
-      let count = task.today ? 1 : 0
-      return sum + count
+      let count = task.today ? 1 : 0;
+      return sum + count;
     }, 0)
   },
   {
     name: `Favorites`,
     count: TASKS_DATA.reduce((sum, task) => {
-      let count = task.favorites ? 1 : 0
-      return sum + count
+      let count = task.favorites ? 1 : 0;
+      return sum + count;
     }, 0)
   },
   {
     name: `Repeating`,
     count: TASKS_DATA.reduce((sum, task) => {
-      let count = task.repeat ? 1 : 0
-      return sum + count
+      let count = task.repeat ? 1 : 0;
+      return sum + count;
     }, 0)
   },
   {
     name: `Archive`,
     count: TASKS_DATA.reduce((sum, task) => {
-      let count = task.archive ? 1 : 0
-      return sum + count
+      let count = task.archive ? 1 : 0;
+      return sum + count;
     }, 0)
   }
 ];
@@ -191,7 +193,7 @@ const createSiteTask = (task) => {
           </p>
         </div>
       </div>`
-    : ``;
+      : ``;
 
     return template;
   };
@@ -454,7 +456,7 @@ render(siteMainControl, createSiteMenuContainer(), `beforeend`);
 
 const siteMainControlContainer = siteMainControl.querySelector(`.control__btn-wrap`);
 
-CONTROLS_DATA.forEach(control => {
+CONTROLS_DATA.forEach((control) => {
   render(siteMainControlContainer, createSiteMenuElement(control), `beforeend`);
 });
 
@@ -462,7 +464,7 @@ render(siteMain, createSiteFiltersContainer(), `beforeend`);
 
 const siteFiltersContainer = siteMain.querySelector(`.main__filter`);
 
-FILTER_DATA.forEach(filterData => {
+FILTER_DATA.forEach((filterData) => {
   render(siteFiltersContainer, createSiteFilterElement(filterData.name, filterData.count), `beforeend`);
 });
 
@@ -474,7 +476,7 @@ render(siteBoard, createSiteSortingContainer(), `beforeend`);
 
 const siteSortingContainer = siteBoard.querySelector(`.board__filter-list`);
 
-SORT_DATA.forEach(sortingData => {
+SORT_DATA.forEach((sortingData) => {
   render(siteSortingContainer, createSiteSortingElement(sortingData.text, sortingData.link), `beforeend`);
 });
 
@@ -482,7 +484,7 @@ render(siteBoard, createSiteTasksContainer(), `beforeend`);
 
 const siteTasksContainer = siteBoard.querySelector(`.board__tasks`);
 
-TASKS_DATA.forEach(task => {
+TASKS_DATA.forEach((task) => {
   render(siteTasksContainer, createSiteTask(task), `beforeend`);
 });
 
